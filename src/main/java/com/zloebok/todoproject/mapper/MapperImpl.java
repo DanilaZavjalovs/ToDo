@@ -8,6 +8,7 @@ public class MapperImpl implements Mapper {
     @Override
     public ToDoItemDTO ToDoEntityToDTO(ToDoEntity entity) {
         return ToDoItemDTO.builder()
+                .id(entity.getId())
                 .description(entity.getDescription())
                 .created(entity.getCreated())
                 .updated(entity.getUpdated())

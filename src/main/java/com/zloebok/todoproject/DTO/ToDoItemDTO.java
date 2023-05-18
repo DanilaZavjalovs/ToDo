@@ -9,6 +9,8 @@ import java.util.Date;
 @Builder
 public class ToDoItemDTO {
 
+    private Long id;
+
     private String description;
 
     private Date created;
