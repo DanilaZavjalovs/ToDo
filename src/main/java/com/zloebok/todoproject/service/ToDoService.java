@@ -1,6 +1,7 @@
 package com.zloebok.todoproject.service;
 
 import com.zloebok.todoproject.DTO.ToDoItemDTO;
+import com.zloebok.todoproject.exception.ApiRequestNotFoundException;
 import com.zloebok.todoproject.mapper.Mapper;
 import com.zloebok.todoproject.mapper.MapperImpl;
 import com.zloebok.todoproject.repository.ToDoRepository;
@@ -25,6 +26,12 @@ public class ToDoService {
         return toDoRepository.findAll().stream()
                 .map(mapper::ToDoEntityToDTO)
                 .toList();
+    }
+
+    public ToDoItemDTO getById(Long id) {
+        return mapper.ToDoEntityToDTO(
+                toDoRepository.findById(id)
+                        .orElseThrow(() -> new ApiRequestNotFoundException("Not found ToDo item")));
     }
 
     public ToDoItemDTO createToDo(ToDoItemDTO itemDTO) {

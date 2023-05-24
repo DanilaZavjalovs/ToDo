@@ -25,6 +25,14 @@ public class ToDoController {
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<ToDoItemDTO> getById(@PathVariable Long id) {
+        ToDoItemDTO itemDTO = toDoService.getById(id);
+
+        return new ResponseEntity<>(itemDTO, HttpStatus.OK);
+    }
+
+
     @PostMapping
     public ResponseEntity<ToDoItemDTO> createToDo(@RequestBody ToDoItemDTO itemDTO) {
         return new ResponseEntity<>(toDoService.createToDo(itemDTO), HttpStatus.CREATED);
